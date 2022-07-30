@@ -16,7 +16,10 @@ import com.google.android.material.button.MaterialButton;
 public class MainActivity extends AppCompatActivity {
 
     Db DB;
-
+    String userName;
+    String name;
+    String surname;
+    String pass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
         TextView register = (TextView) findViewById(R.id.register);
         DB = new Db (this);
-
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,32 +42,24 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     Intent hp =new Intent(getApplicationContext(),HomePage.class);
-                    String userName;
-                    String name;
-                    String surname;
+
                     while(res.moveToNext()) {
                         userName = res.getString(0);
                         name = res.getString(1);
                         surname = res.getString(2);
+                        pass = res.getString(3);
                         hp.putExtra("name", name);
                         hp.putExtra("username", userName);
                         hp.putExtra("surname", surname);
 
                     }
+                    if (pass.equals(password.getText().toString())) {
+                        startActivity(hp);
+                    }
+                    else {
+                        Toast.makeText(MainActivity.this, "Wrong username or password !", Toast.LENGTH_SHORT).show();
+                    }
 
-                    startActivity(hp);
-//                    StringBuffer buffer = new StringBuffer();
-//                    while(res.moveToNext()) {
-//                        buffer.append("Username " + res.getString(0)+"\n" );
-//                        buffer.append("Name " + res.getString(1)+"\n" );
-//                        buffer.append("Surname " + res.getString(2)+"\n" );
-//                        buffer.append("Password " + res.getString(3)+"\n" );
-//                    }
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-//                    builder.setCancelable(true);
-//                    builder.setTitle("User Details");
-//                    builder.setMessage(buffer.toString());
-//                    builder.show();
                 }
 
             }
