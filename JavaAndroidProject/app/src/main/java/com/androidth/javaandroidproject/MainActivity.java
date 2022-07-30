@@ -2,6 +2,7 @@ package com.androidth.javaandroidproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         TextView username  = (TextView) findViewById(R.id.username);
         TextView password  = (TextView) findViewById(R.id.password);
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
+        TextView register = (TextView) findViewById(R.id.register);
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,5 +35,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        register.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                // starting background task to update product
+                Intent reg =new Intent(getApplicationContext(),Register.class);
+                startActivity(reg);
+            }
+        });
+
+
     }
+
+
 }

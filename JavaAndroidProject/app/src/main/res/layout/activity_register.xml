@@ -5,21 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".MainActivity">
+    tools:context=".Register">
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/name"
+        android:id="@+id/appname"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:text="EXPENSES COUNTER"
         android:textStyle="bold"/>
 
@@ -27,15 +28,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/signin"
-        android:layout_below="@id/name"
+        android:layout_below="@id/appname"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="30dp"
-        android:text="Sign in"
-       />
+        android:textSize="20dp"
+        android:text="Register"
+        />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/signin"
@@ -43,8 +44,36 @@
         android:background="@color/white"
         android:drawableLeft="@drawable/ic_baseline_person_24"
         android:drawablePadding="20dp"
+        android:hint="Your Name"
+        android:padding="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/surname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_margin="20dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawablePadding="20dp"
+        android:hint="Your Surname"
+        android:padding="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/surname"
+        android:layout_margin="20dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawablePadding="20dp"
         android:hint="Username"
-        android:padding="20dp"
+        android:padding="15dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black" />
 
@@ -58,7 +87,7 @@
         android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
         android:drawablePadding="20dp"
         android:hint="Password"
-        android:padding="20dp"
+        android:padding="15dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:inputType="textPassword"/>
@@ -66,9 +95,9 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/loginbtn"
+        android:id="@+id/registerbtn"
         android:layout_below="@id/password"
-        android:text="LOG IN"
+        android:text="REGISTER"
         android:background="@color/white"
         android:textColor="@color/teal_200"
         android:layout_centerHorizontal="true"
@@ -83,11 +112,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/register"
-        android:layout_below="@id/loginbtn"
+        android:id="@+id/login"
+        android:layout_below="@id/registerbtn"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="50dp"
@@ -95,9 +124,7 @@
         android:textColor="@color/white"
         android:textSize="14dp"
         android:layout_centerHorizontal="true"
-        android:text="Don't have account. Sign up here !"
+        android:text="You have account? Login here !"
         />
-
-
 
 </RelativeLayout>
