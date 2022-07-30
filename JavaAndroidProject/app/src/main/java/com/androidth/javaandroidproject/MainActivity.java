@@ -28,41 +28,46 @@ public class MainActivity extends AppCompatActivity {
         TextView register = (TextView) findViewById(R.id.register);
         DB = new Db (this);
 
+
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Cursor res = DB.getUserData(username.getText().toString());
                 if (res.getCount() == 0) {
-                    Toast.makeText(MainActivity.this, "No data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Wrong username or password !", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else {
-                    StringBuffer buffer = new StringBuffer();
+                    Intent hp =new Intent(getApplicationContext(),HomePage.class);
+                    String userName;
+                    String name;
+                    String surname;
                     while(res.moveToNext()) {
-                        buffer.append("Username " + res.getString(0)+"\n" );
-                        buffer.append("Name " + res.getString(1)+"\n" );
-                        buffer.append("Surname " + res.getString(2)+"\n" );
-                        buffer.append("Password " + res.getString(3)+"\n" );
+                        userName = res.getString(0);
+                        name = res.getString(1);
+                        surname = res.getString(2);
+                        hp.putExtra("name", name);
+                        hp.putExtra("username", userName);
+                        hp.putExtra("surname", surname);
+
                     }
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setCancelable(true);
-                    builder.setTitle("User Details");
-                    builder.setMessage(buffer.toString());
-                    builder.show();
+
+                    startActivity(hp);
+//                    StringBuffer buffer = new StringBuffer();
+//                    while(res.moveToNext()) {
+//                        buffer.append("Username " + res.getString(0)+"\n" );
+//                        buffer.append("Name " + res.getString(1)+"\n" );
+//                        buffer.append("Surname " + res.getString(2)+"\n" );
+//                        buffer.append("Password " + res.getString(3)+"\n" );
+//                    }
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                    builder.setCancelable(true);
+//                    builder.setTitle("User Details");
+//                    builder.setMessage(buffer.toString());
+//                    builder.show();
                 }
 
-
-
-
-                if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
-                     //  correct login
-                    Toast.makeText(MainActivity.this, "LOGIN SUCCESSFUL !", Toast.LENGTH_SHORT).show();
-                }
-                    //   incorrect login
-                    else {
-                    Toast.makeText(MainActivity.this, "LOGIN FAILED! TRY AGAIN !", Toast.LENGTH_SHORT).show();
-                }
             }
         });
         register.setOnClickListener(new View.OnClickListener() {
