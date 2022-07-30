@@ -30,29 +30,9 @@ public class Register extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                Cursor res = DB.getData();
-                if (res.getCount() == 0) {
-                    Toast.makeText(Register.this, "No data", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                else {
-                    StringBuffer buffer = new StringBuffer();
-                    while(res.moveToNext()) {
-                        buffer.append("Username" + res.getString(0)+"\n" );
-                        buffer.append("Name" + res.getString(1)+"\n" );
-                        buffer.append("Surname" + res.getString(2)+"\n" );
-                        buffer.append("Password" + res.getString(3)+"\n" );
-                    }
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
-                    builder.setCancelable(true);
-                    builder.setTitle("User Details");
-                    builder.setMessage(buffer.toString());
-                    builder.show();
-                }
-
                 // starting background task to update product
-//                Intent main_activity =new Intent(getApplicationContext(),MainActivity.class);
-//                startActivity(main_activity);
+               Intent main_activity =new Intent(getApplicationContext(),MainActivity.class);
+               startActivity(main_activity);
             }
         });
 
@@ -66,8 +46,8 @@ public class Register extends AppCompatActivity {
                 Boolean checkInsertData = DB.insertUserData(usernameTxt, nameTxt, surnameTxt, passwordTxt);
                 if (checkInsertData == true) {
                     Toast.makeText(Register.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-//                    Intent main_activity =new Intent(getApplicationContext(),MainActivity.class);
-//                    startActivity(main_activity);
+                    Intent main_activity =new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(main_activity);
                 }
                 else {
                     Toast.makeText(Register.this, "Registration Failed!", Toast.LENGTH_SHORT).show();

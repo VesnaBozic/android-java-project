@@ -1,8 +1,10 @@
 package com.androidth.javaandroidproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.opengl.GLDebugHelper;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +31,30 @@ public class MainActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Cursor res = DB.getUserData(username.getText().toString());
+                if (res.getCount() == 0) {
+                    Toast.makeText(MainActivity.this, "No data", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else {
+                    StringBuffer buffer = new StringBuffer();
+                    while(res.moveToNext()) {
+                        buffer.append("Username " + res.getString(0)+"\n" );
+                        buffer.append("Name " + res.getString(1)+"\n" );
+                        buffer.append("Surname " + res.getString(2)+"\n" );
+                        buffer.append("Password " + res.getString(3)+"\n" );
+                    }
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setCancelable(true);
+                    builder.setTitle("User Details");
+                    builder.setMessage(buffer.toString());
+                    builder.show();
+                }
+
+
+
+
                 if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
                      //  correct login
                     Toast.makeText(MainActivity.this, "LOGIN SUCCESSFUL !", Toast.LENGTH_SHORT).show();

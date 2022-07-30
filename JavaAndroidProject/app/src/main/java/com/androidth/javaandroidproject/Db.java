@@ -62,7 +62,7 @@ public class Db extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean deleteUserData(String username ) {
+    public Boolean deleteUserData(String username) {
         SQLiteDatabase DB = this.getWritableDatabase();
 
         Cursor cursor = DB.rawQuery("Select * from UserDetails where username = ?", new String[] {username} );
@@ -80,9 +80,9 @@ public class Db extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getData() {
+    public Cursor getUserData(String username) {
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("Select * from UserDetails", null );
+        Cursor cursor = DB.rawQuery("Select * from UserDetails where username = ?", new String[] {username} );
         return cursor;
     }
 }
