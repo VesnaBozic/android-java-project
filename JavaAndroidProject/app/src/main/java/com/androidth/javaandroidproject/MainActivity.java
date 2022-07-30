@@ -3,6 +3,7 @@ package com.androidth.javaandroidproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.opengl.GLDebugHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
+
+    Db DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         TextView password  = (TextView) findViewById(R.id.password);
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
         TextView register = (TextView) findViewById(R.id.register);
+        DB = new Db (this);
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
