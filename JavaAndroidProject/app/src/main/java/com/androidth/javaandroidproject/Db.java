@@ -48,16 +48,33 @@ public class Db extends SQLiteOpenHelper {
         contentValues.put("name", name);
         contentValues.put("surname", surname);
         contentValues.put("password", password);
-        Cursor cursor = DB.rawQuery("Select * from UserDetails where surname = ?", new String[] {surname} );
+        Cursor cursor = DB.rawQuery("Select * from UserDetails where username = ?", new String[] {username} );
         if (cursor.getCount() > 0) {
 
-        long result = DB.update("UserDetails", contentValues, "surname=?", new String[] {surname});
+        long result = DB.update("UserDetails", contentValues, "username=?", new String[] {username});
         if (result == 1) {
             return false;
         }
         else {
             return  true;
         }} else {
+            return true;
+        }
+    }
+
+    public Boolean deleteUserData(String username ) {
+        SQLiteDatabase DB = this.getWritableDatabase();
+
+        Cursor cursor = DB.rawQuery("Select * from UserDetails where username = ?", new String[] {username} );
+        if (cursor.getCount() > 0) {
+
+            long result = DB.delete("UserDetails","username=?", new String[] {username});
+            if (result == -1) {
+                return false;
+            }
+            else {
+                return  true;
+            }} else {
             return true;
         }
     }
