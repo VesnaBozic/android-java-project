@@ -7,29 +7,20 @@
     android:background="@drawable/bg"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/name"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="50dp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:text="EXPENSES COUNTER"
-        android:textStyle="bold"/>
+
 
     <TextView
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/signin"
-        android:layout_below="@id/name"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/purple"
         android:textSize="30dp"
         android:text="Sign in"
        />
@@ -45,8 +36,8 @@
         android:drawablePadding="20dp"
         android:hint="Username"
         android:padding="15dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black" />
+        android:textColor="@color/purple"
+        android:textColorHint="@color/purple" />
 
     <EditText
         android:id="@+id/password"
@@ -59,8 +50,8 @@
         android:drawablePadding="20dp"
         android:hint="Password"
         android:padding="15dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
+        android:textColor="@color/purple"
+        android:textColorHint="@color/purple"
         android:inputType="textPassword"/>
 
     <com.google.android.material.button.MaterialButton
@@ -92,7 +83,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginBottom="50dp"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/purple"
         android:textSize="14dp"
         android:layout_centerHorizontal="true"
         android:text="Don't have account. Sign up here !"

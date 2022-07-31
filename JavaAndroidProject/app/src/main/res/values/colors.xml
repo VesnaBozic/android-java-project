@@ -8,6 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#EA4C63</color>
+    <color name="aliceblue">#ecedfb</color>
+    <color name="purple">#381678</color>
+
+
+
 
     #ea4c63
 </resources>
