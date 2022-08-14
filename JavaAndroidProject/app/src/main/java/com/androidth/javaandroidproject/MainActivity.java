@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.opengl.GLDebugHelper;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView username  = (TextView) findViewById(R.id.username);
-        TextView password  = (TextView) findViewById(R.id.password);
+        EditText username  = (EditText) findViewById(R.id.username);
+        EditText password  = (EditText) findViewById(R.id.password);
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
         TextView register = (TextView) findViewById(R.id.register);
         DB = new Db (this);
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         hp.putExtra("name", name);
                         hp.putExtra("username", userName);
                         hp.putExtra("surname", surname);
+                        hp.putExtra("password", pass);
 
                     }
                     if (pass.equals(password.getText().toString())) {

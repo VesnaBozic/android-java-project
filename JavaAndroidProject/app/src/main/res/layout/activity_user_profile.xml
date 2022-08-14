@@ -97,11 +97,28 @@
         android:background="@drawable/radius"
         />
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/deletebtn"
+        android:layout_below="@+id/editbtn"
+        android:text="Delete profile"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20px"
+        android:textStyle="bold"
+        android:paddingLeft="15dp"
+        android:textSize="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/radius"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/login"
-        android:layout_below="@id/editbtn"
+        android:id="@+id/goBack"
+        android:layout_below="@+id/deletebtn"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"

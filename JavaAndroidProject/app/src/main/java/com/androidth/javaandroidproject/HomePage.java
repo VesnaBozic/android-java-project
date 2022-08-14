@@ -32,8 +32,12 @@ import com.google.android.material.button.MaterialButton;
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent main_activity =new Intent(getApplicationContext(),UserProfile.class);
-                startActivity(main_activity);
+                Intent userProfile =new Intent(getApplicationContext(),UserProfile.class);
+                userProfile.putExtra("name", getIntent().getStringExtra("name"));
+                userProfile.putExtra("username",getIntent().getStringExtra("username"));
+                userProfile.putExtra("surname",getIntent().getStringExtra("surname"));
+                userProfile.putExtra("password",getIntent().getStringExtra("password"));
+                startActivity(userProfile);
             }
         });
     }

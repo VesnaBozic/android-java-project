@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,11 +20,11 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        TextView name  = (TextView) findViewById(R.id.name);
-        TextView surname  = (TextView) findViewById(R.id.surname);
-        TextView username  = (TextView) findViewById(R.id.username);
-        TextView password  = (TextView) findViewById(R.id.password);
-        TextView registerbtn = (TextView) findViewById(R.id.registerbtn);
+        EditText name  = (EditText) findViewById(R.id.name);
+        EditText surname  = (EditText) findViewById(R.id.surname);
+        EditText username  = (EditText) findViewById(R.id.username);
+        EditText password  = (EditText) findViewById(R.id.password);
+        MaterialButton registerbtn = (MaterialButton) findViewById(R.id.registerbtn);
         TextView login = (TextView) findViewById(R.id.login);
         DB = new Db (this);
 
