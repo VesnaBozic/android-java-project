@@ -5,25 +5,30 @@
     android:layout_height="match_parent"
     tools:context=".Weather">
 
-    <ImageView
-        android:id="@+id/weatherImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+
+    <TextView
+        android:id="@+id/weatherIcon"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:layout_marginBottom="155dp"
+        android:gravity="center"
+        android:textSize="96sp" />
 
     <TextView
         android:id="@+id/tekst"
         android:layout_width="323dp"
         android:layout_height="99dp"
-        android:layout_below="@id/weatherImage"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="40dp"
@@ -31,9 +36,9 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginBottom="412dp"
+        android:layout_marginBottom="350dp"
+        android:gravity="center"
         android:textColor="@color/black"
-        android:gravity="center "
         android:textSize="25sp"
         android:textStyle="bold" />
 
