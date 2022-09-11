@@ -20,6 +20,7 @@ import com.google.android.material.button.MaterialButton;
         name.setText(getIntent().getStringExtra("name"));
         TextView logout = (TextView) findViewById(R.id.logout);
         MaterialButton profile = (MaterialButton) findViewById(R.id.profile);
+        MaterialButton weather_btn = (MaterialButton) findViewById(R.id.weather);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,5 +41,15 @@ import com.google.android.material.button.MaterialButton;
                 startActivity(userProfile);
             }
         });
+
+        weather_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent weather = new Intent(getApplicationContext(), Weather.class);
+                startActivity(weather);
+            }
+        });
     }
+
+
 }
