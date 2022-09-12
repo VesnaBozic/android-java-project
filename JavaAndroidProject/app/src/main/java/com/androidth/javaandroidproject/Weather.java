@@ -1,25 +1,20 @@
 package com.androidth.javaandroidproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-
 import org.json.JSONException;
-import org.json.JSONObject;
 
 public class Weather extends AppCompatActivity {
 
@@ -43,12 +38,9 @@ public class Weather extends AppCompatActivity {
         searchBtn = findViewById(R.id.searchBtn);
 
 
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String getLocation = location.getText().toString();
-                updateWeather(getLocation);
-            }
+        searchBtn.setOnClickListener(view -> {
+            String getLocation = location.getText().toString();
+            updateWeather(getLocation);
         });
 
     }
@@ -70,7 +62,6 @@ public class Weather extends AppCompatActivity {
             case 2:
                 return "\uf005";
             case 3 :
-                return "\uf00b";
             case 5 :
                 return "\uf00b";
             case 6 :
@@ -88,29 +79,23 @@ public class Weather extends AppCompatActivity {
         String apiUrl = String.format("https://api.openweathermap.org/data/2.5/weather?q=%1$s&appid=8b32af0cef6daf3aa2882463cf64d057&units=metric", location);
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    double temp = response.getJSONObject("main").getDouble("temp");
-                    String temperatureFormatted = getString(R.string.temp_format, temp);
-                    temperatureLabel.setText(temperatureFormatted);
-                    int weatherIconCode = response.getInt("cod");
-                    String iconWeather = getIcon(weatherIconCode);
-                    weatherImage.setText(iconWeather);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null, response -> {
+            try {
+                double temp = response.getJSONObject("main").getDouble("temp");
+                String temperatureFormatted = getString(R.string.temp_format, temp);
+                temperatureLabel.setText(temperatureFormatted);
+                int weatherIconCode = response.getInt("cod");
+                String iconWeather = getIcon(weatherIconCode);
+                weatherImage.setText(iconWeather);
 
-                } catch (JSONException e) {
-                    Toast errorMsg = Toast.makeText(Weather.this, e.getMessage(), Toast.LENGTH_LONG);
-                    errorMsg.show();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast errorMsg = Toast.makeText(Weather.this, error.getMessage(), Toast.LENGTH_LONG);
+            } catch (JSONException e) {
+                Toast errorMsg = Toast.makeText(Weather.this, e.getMessage(), Toast.LENGTH_LONG);
                 errorMsg.show();
             }
+
+        }, error -> {
+            Toast errorMsg = Toast.makeText(Weather.this, error.getMessage(), Toast.LENGTH_LONG);
+            errorMsg.show();
         });
 
         queue.add(request);

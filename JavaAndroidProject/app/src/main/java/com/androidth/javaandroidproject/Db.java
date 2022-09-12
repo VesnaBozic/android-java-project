@@ -1,5 +1,6 @@
 package com.androidth.javaandroidproject;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -7,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-import androidx.annotation.Nullable;
 
 public class Db extends SQLiteOpenHelper {
     public Db( Context context) {
@@ -34,12 +34,7 @@ public class Db extends SQLiteOpenHelper {
         contentValues.put("password", password);
 
         long result = DB.insert("UserDetails", null, contentValues);
-        if (result == 1) {
-            return false;
-        }
-        else {
-           return  true;
-        }
+        return result != 1;
     }
 
     public Boolean updateUserData(String username, String name, String surname, String password ) {
@@ -48,16 +43,12 @@ public class Db extends SQLiteOpenHelper {
         contentValues.put("name", name);
         contentValues.put("surname", surname);
         contentValues.put("password", password);
-        Cursor cursor = DB.rawQuery("Select * from UserDetails where username = ?", new String[] {username} );
+        @SuppressLint("Recycle") Cursor cursor = DB.rawQuery("Select * from UserDetails where username = ?", new String[] {username} );
         if (cursor.getCount() > 0) {
 
         long result = DB.update("UserDetails", contentValues, "username=?", new String[] {username});
-        if (result == 1) {
-            return false;
-        }
-        else {
-            return  true;
-        }} else {
+            return result != 1;
+        } else {
             return true;
         }
     }
@@ -65,16 +56,12 @@ public class Db extends SQLiteOpenHelper {
     public Boolean deleteUserData(String username) {
         SQLiteDatabase DB = this.getWritableDatabase();
 
-        Cursor cursor = DB.rawQuery("Select * from UserDetails where username = ?", new String[] {username} );
+        @SuppressLint("Recycle") Cursor cursor = DB.rawQuery("Select * from UserDetails where username = ?", new String[] {username} );
         if (cursor.getCount() > 0) {
 
             long result = DB.delete("UserDetails","username=?", new String[] {username});
-            if (result == -1) {
-                return false;
-            }
-            else {
-                return  true;
-            }} else {
+            return result != -1;
+        } else {
             return true;
         }
     }
@@ -82,7 +69,6 @@ public class Db extends SQLiteOpenHelper {
 
     public Cursor getUserData(String username) {
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("Select * from UserDetails where username = ?", new String[] {username} );
-        return cursor;
+        return DB.rawQuery("Select * from UserDetails where username = ?", new String[] {username} );
     }
 }
