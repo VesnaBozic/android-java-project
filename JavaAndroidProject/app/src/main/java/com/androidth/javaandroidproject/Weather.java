@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,8 @@ public class Weather extends AppCompatActivity {
     TextView temperatureLabel;
     TextView weatherImage;
     Typeface weatherFont;
+    EditText location;
+    Button searchBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +39,18 @@ public class Weather extends AppCompatActivity {
         weatherImage = findViewById(R.id.weatherIcon);
         weatherFont = Typeface.createFromAsset(getAssets(), "weathericons-regular-webfont.ttf");
         weatherImage.setTypeface(weatherFont);
+        location = findViewById(R.id.location);
+        searchBtn = findViewById(R.id.searchBtn);
 
-        updateWeather();
+
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String getLocation = location.getText().toString();
+                updateWeather(getLocation);
+            }
+        });
+
     }
 
     String getIcon(int code) {
@@ -69,8 +84,8 @@ public class Weather extends AppCompatActivity {
         }
     }
 
-    void updateWeather(){
-        String apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=novi+sad&appid=8b32af0cef6daf3aa2882463cf64d057&units=metric";
+    void updateWeather(String location){
+        String apiUrl = String.format("https://api.openweathermap.org/data/2.5/weather?q=%1$s&appid=8b32af0cef6daf3aa2882463cf64d057&units=metric", location);
 
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null, new Response.Listener<JSONObject>() {
