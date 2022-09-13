@@ -2,6 +2,7 @@
 
  import android.content.Intent;
  import android.os.Bundle;
+ import android.view.View;
  import android.widget.TextView;
 
  import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@
         TextView logout = findViewById(R.id.logout);
         MaterialButton profile = findViewById(R.id.profile);
         MaterialButton weather_btn = findViewById(R.id.weather);
+        MaterialButton stopWatchBtn = findViewById(R.id.stopwatch);
 
         logout.setOnClickListener(view -> {
             Intent main_activity =new Intent(getApplicationContext(),MainActivity.class);
@@ -35,9 +37,16 @@
             startActivity(userProfile);
         });
 
+
+
         weather_btn.setOnClickListener(view -> {
             Intent weather = new Intent(getApplicationContext(), Weather.class);
             startActivity(weather);
+        });
+
+        stopWatchBtn.setOnClickListener(view -> {
+            Intent watch = new Intent(getApplicationContext(), StopWatch.class);
+            startActivity(watch);
         });
     }
 

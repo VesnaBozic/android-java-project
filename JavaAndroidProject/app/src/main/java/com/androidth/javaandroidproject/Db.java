@@ -16,7 +16,8 @@ public class Db extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table UserDetails (username TEXT primary key, name TEXTs, surname TEXT, password TEXT )");
+        DB.execSQL("create Table UserDetails (username TEXT primary key, name TEXT, surname TEXT, password TEXT )");
+
 
     }
 
@@ -36,6 +37,7 @@ public class Db extends SQLiteOpenHelper {
         long result = DB.insert("UserDetails", null, contentValues);
         return result != 1;
     }
+
 
     public Boolean updateUserData(String username, String name, String surname, String password ) {
         SQLiteDatabase DB = this.getWritableDatabase();
@@ -71,4 +73,5 @@ public class Db extends SQLiteOpenHelper {
         SQLiteDatabase DB = this.getWritableDatabase();
         return DB.rawQuery("Select * from UserDetails where username = ?", new String[] {username} );
     }
+
 }
