@@ -1,5 +1,6 @@
 package com.androidth.javaandroidproject;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.Button;
@@ -24,6 +25,11 @@ public class Weather extends AppCompatActivity {
     Typeface weatherFont;
     EditText location;
     Button searchBtn;
+    TextView goBack;
+    String name ;
+    String surname;
+    String username;
+    String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +42,26 @@ public class Weather extends AppCompatActivity {
         weatherImage.setTypeface(weatherFont);
         location = findViewById(R.id.location);
         searchBtn = findViewById(R.id.searchBtn);
+        goBack = findViewById(R.id.goBack);
+//        name = getIntent().getStringExtra("name");
+//        surname = getIntent().getStringExtra("surname");
+//        username = getIntent().getStringExtra("username");
+//        password = getIntent().getStringExtra("password");
+
 
 
         searchBtn.setOnClickListener(view -> {
             String getLocation = location.getText().toString();
             updateWeather(getLocation);
+        });
+
+        goBack.setOnClickListener(view -> {
+            Intent homePage =new Intent(getApplicationContext(),HomePage.class);
+//            homePage.putExtra("name", name);
+//            homePage.putExtra("username", username);
+//            homePage.putExtra("surname", surname);
+//            homePage.putExtra("password",password);
+            startActivity(homePage);
         });
 
     }
@@ -74,6 +95,8 @@ public class Weather extends AppCompatActivity {
                 return "\uf041";
         }
     }
+
+
 
     void updateWeather(String location){
         String apiUrl = String.format("https://api.openweathermap.org/data/2.5/weather?q=%1$s&appid=8b32af0cef6daf3aa2882463cf64d057&units=metric", location);

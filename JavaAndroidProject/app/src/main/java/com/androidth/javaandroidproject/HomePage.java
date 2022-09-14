@@ -41,11 +41,19 @@
 
         weather_btn.setOnClickListener(view -> {
             Intent weather = new Intent(getApplicationContext(), Weather.class);
+            weather.putExtra("name", getIntent().getStringExtra("name"));
+            weather.putExtra("username",getIntent().getStringExtra("username"));
+            weather.putExtra("surname",getIntent().getStringExtra("surname"));
+            weather.putExtra("password",getIntent().getStringExtra("password"));
             startActivity(weather);
         });
 
         stopWatchBtn.setOnClickListener(view -> {
             Intent watch = new Intent(getApplicationContext(), StopWatch.class);
+            watch.putExtra("name", getIntent().getStringExtra("name"));
+            watch.putExtra("username",getIntent().getStringExtra("username"));
+            watch.putExtra("surname",getIntent().getStringExtra("surname"));
+            watch.putExtra("password",getIntent().getStringExtra("password"));
             startActivity(watch);
         });
     }

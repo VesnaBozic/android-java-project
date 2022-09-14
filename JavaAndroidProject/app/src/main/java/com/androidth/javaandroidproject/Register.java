@@ -4,6 +4,7 @@ package com.androidth.javaandroidproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ public class Register extends AppCompatActivity {
         DB = new Db (this);
 
         login.setOnClickListener(v -> {
-            // starting background task to update product
+
            Intent main_activity =new Intent(getApplicationContext(),MainActivity.class);
            startActivity(main_activity);
         });
@@ -38,15 +39,25 @@ public class Register extends AppCompatActivity {
             String surnameTxt = surname.getText().toString();
             String passwordTxt = password.getText().toString();
 
-            Boolean checkInsertData = DB.insertUserData(usernameTxt, nameTxt, surnameTxt, passwordTxt);
-            if (checkInsertData) {
-                Toast.makeText(Register.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-                Intent main_activity =new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(main_activity);
+            Cursor res = DB.getUserData(username.getText().toString());
+            if (res.getCount() == 0 ) {
+                Boolean checkInsertData = DB.insertUserData(usernameTxt, nameTxt, surnameTxt, passwordTxt);
+                if (checkInsertData) {
+                    Toast.makeText(Register.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                    Intent main_activity =new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(main_activity);
+                }
+                else {
+                    Toast.makeText(Register.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                    Intent main_activity =new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(main_activity);
+                }
+
+
             }
             else {
-                Toast.makeText(Register.this, "Registration Failed!", Toast.LENGTH_SHORT).show();
-            }
+                Toast.makeText(Register.this, "This username already exists!", Toast.LENGTH_SHORT).show();
+  }
         });
     }
 }

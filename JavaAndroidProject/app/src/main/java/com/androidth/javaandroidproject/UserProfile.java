@@ -33,6 +33,10 @@ public class UserProfile extends AppCompatActivity {
 
         goBack.setOnClickListener(view -> {
             Intent homePage =new Intent(getApplicationContext(),HomePage.class);
+            homePage.putExtra("name", name.getText());
+            homePage.putExtra("username", username.getText());
+            homePage.putExtra("surname", surname.getText());
+            homePage.putExtra("password",password.getText());
             startActivity(homePage);
         });
 
@@ -49,7 +53,19 @@ public class UserProfile extends AppCompatActivity {
         }
         });
 
-        editBtn.setOnClickListener(view -> Toast.makeText( UserProfile.this, "User updated", Toast.LENGTH_SHORT).show());
+        editBtn.setOnClickListener(view ->{
+            String userName = getIntent().getStringExtra("username");
+            Boolean checkData = DB.updateUserData(userName, name.getText().toString(), surname.getText().toString(), password.getText().toString());
+            if (checkData) {
+            Toast.makeText( UserProfile.this, "User updated", Toast.LENGTH_SHORT).show(); }
+            else {
+                Toast.makeText( UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+
+
          }
 
 
